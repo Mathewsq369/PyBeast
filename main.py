@@ -27,3 +27,11 @@ def mainMenu():
     print(13 * "=")
     print(3 * " " + "WELCOME")
     print(13 * "=")
+    print("\nChoose option you want to perform")
+    print("1. CREATE ACCOUNT")
+    print("2. ACCOUNT LOGIN")
+    print("3. EXIT APLICATION")
+    choice = int(input("Input choice >> "))
+    return choice
+
+mainMenu()
