@@ -1,7 +1,6 @@
 """
 recoding the bank account management system
 """
-import random
 
 """
 After starting the system
@@ -23,6 +22,7 @@ for 2
     account number generated and displayed to the user
     user is redirected to the login page
 """
+import random
 admin = {'name':'Admin', 'password': 'password'}
 accounts = {1234567:admin}
 
@@ -33,11 +33,9 @@ def mainMenu():
     print("\nChoose option you want to perform")
     print("1. CREATE ACCOUNT")
     print("2. ACCOUNT LOGIN")
-    print("3. EXIT APLICATION")
+    print("3. EXIT APPLICATION")
     choice = int(input("Input choice >> "))
     return choice
-
-choice = mainMenu()
 
 def genAccountNo():
     a = random.randint(12344321, 87654321)
@@ -62,5 +60,16 @@ def createAccount():
             print(i, j)
         print("\nAccount created successfully!!")
 
+def accountLogin():
+    login = False
+    print("\n\n" + 10 * " " + 13 * "=")
+    print(10 * " " + "ACCOUNT LOGIN")
+    print(10 * " " + 13 * "=")
+    accountNumber = input("Enter your account number: ")
+    password = input("Create a strong password: ")
+    if accounts[accountNumber]['password'] == password:
+        pass
 
+choice = mainMenu()
 createAccount()
+accountLogin()
