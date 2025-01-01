@@ -65,10 +65,16 @@ def accountLogin():
     print("\n\n" + 10 * " " + 13 * "=")
     print(10 * " " + "ACCOUNT LOGIN")
     print(10 * " " + 13 * "=")
+
+def authentication(count=0):
     accountNumber = input("Enter your account number: ")
-    password = input("Create a strong password: ")
+    password = input("Enter your password: ")
     if accounts[accountNumber]['password'] == password:
         pass
+    elif count == 3:
+        mainMenu()
+    else:
+        authentication(count + 1)
 
 choice = mainMenu()
 createAccount()
