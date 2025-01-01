@@ -44,6 +44,9 @@ def genAccountNo():
     return a
 
 def createAccount():
+    print("\n\n" + 10 * " " + 16 * "=")
+    print(10 * " " + "ACCOUNT CREATION")
+    print(10 * " " + 16 * "=")
     username = input("Enter a username: ")
     email = input("Enter your email address: ")
     password = input("Create a strong password: ")
@@ -53,10 +56,11 @@ def createAccount():
         passwordHint = input("Create a password hint incase you ever forget your password: ")
         accountNumber = genAccountNo()
         accounts[accountNumber] = {'username':username, 'email':email, 'password':password, 'passwordHint':passwordHint}
-        print(f"Your new Account number is {accountNumber}")
+        print(f"\n\nYour Account number is {accountNumber}")
 
-        print(accounts[accountNumber])
-        print("Account created successfully")
+        for i,j in accounts[accountNumber].items():
+            print(i, j)
+        print("\nAccount created successfully!!")
 
 
 createAccount()
