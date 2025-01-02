@@ -65,9 +65,10 @@ def accountLogin():
     print("\n\n" + 10 * " " + 13 * "=")
     print(10 * " " + "ACCOUNT LOGIN")
     print(10 * " " + 13 * "=")
+    authentication()
 
 def authentication(count=0):
-    accountNumber = input("Enter your account number: ")
+    accountNumber = input("\nEnter your account number: ")
     password = input("Enter your password: ")
     if accounts[accountNumber]['password'] == password:
         pass
