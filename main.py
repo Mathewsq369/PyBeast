@@ -68,15 +68,20 @@ def accountLogin():
     authentication()
 
 def authentication(count=0):
-    accountNumber = input("\nEnter your account number: ")
+    accountNumber = int(input("\nEnter your account number: "))
     password = input("Enter your password: ")
     if accounts[accountNumber]['password'] == password:
-        pass
+        loginMenu()
     elif count == 3:
-        mainMenu()
+        choice = mainMenu()
+
     else:
         authentication(count + 1)
 
+
+def loginMenu():
+    pass
+authentication()
 choice = mainMenu()
 createAccount()
 accountLogin()
