@@ -27,7 +27,3 @@ admin = {'name':'Admin', 'password': 'password'}
 accounts = {1234567:admin}
 
 
-authentication()
-choice = mainMenu()
-createAccount()
-accountLogin()
