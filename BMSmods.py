@@ -1,3 +1,4 @@
+import random
 def mainMenu():
     print(10 * " " + 13 * "=")
     print(10 * " " + 3 * " " + "WELCOME")

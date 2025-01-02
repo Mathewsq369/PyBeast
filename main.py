@@ -23,7 +23,6 @@ for 2
     user is redirected to the login page
 """
 from BMSmods import *
-import random
 admin = {'name':'Admin', 'password': 'password'}
 accounts = {1234567:admin}
 
