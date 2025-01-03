@@ -38,9 +38,9 @@ def accountLogin():
     print("\n\n" + 10 * " " + 13 * "=")
     print(10 * " " + "ACCOUNT LOGIN")
     print(10 * " " + 13 * "=")
-    authentication(accounts)
+    authentication()
 
-def authentication(accounts,count=0):
+def authentication(count=0):
     accountNumber = int(input("\nEnter your account number: "))
     password = input("Enter your password: ")
     if accounts[accountNumber]['password'] == password:
@@ -50,7 +50,7 @@ def authentication(accounts,count=0):
         choice = mainMenu()
         next(choice)
     else:
-        authentication(accounts,count + 1)
+        authentication(count + 1)
 
 def loginMenu():
     pass
