@@ -34,7 +34,6 @@ def createAccount():
         print("\nAccount created successfully!!")
 
 def accountLogin():
-    login = False
     print("\n\n" + 10 * " " + 13 * "=")
     print(10 * " " + "ACCOUNT LOGIN")
     print(10 * " " + 13 * "=")
