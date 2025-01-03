@@ -14,7 +14,7 @@ def genAccountNo():
     a = random.randint(12344321, 87654321)
     return a
 
-def createAccount():
+def createAccount(accounts):
     print("\n\n" + 10 * " " + 16 * "=")
     print(10 * " " + "ACCOUNT CREATION")
     print(10 * " " + 16 * "=")
@@ -34,12 +34,13 @@ def createAccount():
         print("\nAccount created successfully!!")
 
 def accountLogin():
+    global accounts
     print("\n\n" + 10 * " " + 13 * "=")
     print(10 * " " + "ACCOUNT LOGIN")
     print(10 * " " + 13 * "=")
-    authentication()
+    authentication(accounts)
 
-def authentication(count=0):
+def authentication(accounts,count=0):
     accountNumber = int(input("\nEnter your account number: "))
     password = input("Enter your password: ")
     if accounts[accountNumber]['password'] == password:
