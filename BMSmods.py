@@ -50,7 +50,7 @@ def authentication(accounts,count=0):
         choice = mainMenu()
         next(choice)
     else:
-        authentication(count + 1)
+        authentication(accounts,count + 1)
 
 
 def loginMenu():
