@@ -59,7 +59,12 @@ def next(choice):
     pass
 
 '''
-class accounts():
+class accounts(self,accountNo,accountName,password):
+    def __init__(self,accountNo, accountName, password):
+        self.accountNo = accountNO
+        self.accountName = accountName
+        self.password = password
+
     def creaateaccount(self):
         pass
         
