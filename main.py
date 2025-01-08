@@ -30,4 +30,8 @@ accounts = {1234567:admin}
 '''For console application,
 GUI not present to control flow. hence use of loops and pages'''
 
+def main():
+    mainMenu()
 
+if __name__ == '__main__':
+    main()
