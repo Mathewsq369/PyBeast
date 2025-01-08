@@ -57,3 +57,9 @@ def loginMenu():
 
 def next(choice):
     pass
+
+'''
+class accounts():
+    def creaateaccount(self):
+        pass
+'''
