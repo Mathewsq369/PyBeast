@@ -62,4 +62,12 @@ def next(choice):
 class accounts():
     def creaateaccount(self):
         pass
+        
+        
+        
+acc1 = accounts()
+acc2 = accounts()
+
+acc1.createaccount()
+acc1.createaccount()        
 '''
