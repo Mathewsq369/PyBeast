@@ -9,7 +9,9 @@ After starting the system
 3.Exit 
 """
 
-
+'''
+could im[lement accounts as classes
+'''
 """
 for 1
     ask for accountnumber and password
