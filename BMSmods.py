@@ -1,4 +1,7 @@
 import random
+from sqlite3 import connect
+
+
 def mainMenu():
     print(10 * " " + 13 * "=")
     print(10 * " " + 3 * " " + "WELCOME")
