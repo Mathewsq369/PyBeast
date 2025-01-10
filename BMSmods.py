@@ -68,6 +68,14 @@ class accounts(self,accountNo,accountName,password):
     def creaateaccount(self):
         pass
         
+    def comp(self,other):
+        b1 = self.balance
+        b2 = other.balance
+        if b1 > b2:
+            return True
+        else:
+            return False
+        
         
         
 acc1 = accounts()
