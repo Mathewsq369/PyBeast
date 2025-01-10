@@ -1,5 +1,5 @@
 import random
-from sqlite3 import connect
+#from sqlite3 import connect
 
 
 def mainMenu():
@@ -87,3 +87,7 @@ acc2 = accounts()
 acc1.createaccount()
 acc1.createaccount()        
 '''
+
+import mysql.connector
+
+db = mysql.connector.connect(host="localhost",user="root",passwd="m9r19db")
