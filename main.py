@@ -10,7 +10,7 @@ After starting the system
 """
 
 '''
-could im[lement accounts as classes
+could implement accounts as classes
 '''
 """
 for 1
@@ -35,7 +35,7 @@ GUI not present to control flow. hence use of loops and pages'''
 '''
 IMPLEMENTATOIN USING OOP CONCEPTS
 Every account will be a class
-Every account will contain a username, account number, password, password hint and balance
+Every account will contain a username, account number, email address, password, password hint and balance
 The necessary implementations on accounts will be performed using methods
 Every page could be a class
 '''
