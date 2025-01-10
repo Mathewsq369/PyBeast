@@ -65,7 +65,7 @@ class accounts(self,accountNo,accountName,password):
         self.accountName = accountName
         self.password = password
 
-    def creaateaccount(self):
+    def createaccount(self):
         pass
         
     def comp(self,other):
