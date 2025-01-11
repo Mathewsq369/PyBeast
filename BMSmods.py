@@ -1,12 +1,6 @@
 import random
 import pymysql
-db = pymysql.connect(host="localhost",user="root",passwd="m9r19db",database="Accounts")
-mycursor = db.cursor()
-mycursor.execute("select * from customer")
 
-for i in mycursor:
-    print(i)
-print(db)
 #from sqlite3 import connect
 
 

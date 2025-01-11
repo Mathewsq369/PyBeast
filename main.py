@@ -25,7 +25,15 @@ for 2
     user is redirected to the login page
 """
 from BMSmods import *
+db = pymysql.connect(host="localhost",user="root",passwd="m9r19db",database="Accounts")
+mycursor = db.cursor()
 admin = {'name':'Admin', 'password': 'password'}
+mycursor.execute("INSERT INTO customer (account number, name, balance) VALUES (%i,%s,%i)",(int(1234567),admin['name'],int(123456)))
+mycursor.execute("select * from customer")
+
+
+for i in mycursor:
+    print(i)
 accounts = {1234567:admin}
 
 
