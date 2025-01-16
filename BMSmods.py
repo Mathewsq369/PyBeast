@@ -34,6 +34,7 @@ def createAccount(accounts):
         print(f"\n\nYour Account number is {accountNumber}")
         global customer
         customer = Accounts(fname, lname, email, accountNumber, password, passwordHint)
+        customer.insert(fname, lname, email, accountNumber, password, passwordHint)
         print("\nAccount created successfully!!")
         return 2
 
@@ -71,8 +72,9 @@ class Accounts:
                 "CREATE TABLE IF NOT EXISTS Accounts (accountnumber INT(12) PRIMARY KEY, firstname VARCHAR(40),lastname VARCHAR(40),password VARCHAR(40), passwordHint VARCHAR(100), email VARCHAR(30), balance VARCHAR(16))")
             db.commit()
 
-    def insert(self):
-        cursor.execute("INSERT INTO customer (accountNumber, firstName,lastName,password,passwordHint,email, balance) VALUES (%s,%s,%s,%s,%s,%s,%s)",(1234567,'name', 'name', 'password', 'password', 'email@email.com', 123456))
+
+    def insert(self,fname, lname, email, accountNo, password, passwordHint, balance=0):
+        cursor.execute("INSERT INTO customer (accountNumber, firstName,lastName,password,passwordHint,email, balance) VALUES (%s,%s,%s,%s,%s,%s,%s)",(accountNo, fname, lname, password, passwordHint, email, balance))
         db.commit()
 
     def displayAll(self):
@@ -112,3 +114,15 @@ def next(choice):
     pass #exit application
 
 
+
+
+
+
+
+
+
+
+
+
+
+#Random data (1234567,'name', 'name', 'password', 'password', 'email@email.com', 123456)
