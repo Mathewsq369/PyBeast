@@ -8,10 +8,15 @@ def main():
 
     try:
         if int(page) == 1:
-            createAccount()
+            global page
+            page = createAccount()
+            next(page)
         elif int(page) == 2:
-            accountLogin()
+            global page
+            page = accountLogin()
+            next(page)
         elif int(page) == 3:
+            global page
             pass  # exit application
     except exception():
         pass

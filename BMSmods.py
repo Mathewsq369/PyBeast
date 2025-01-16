@@ -2,13 +2,6 @@ import random
 import pymysql
 from logging import exception
 
-try:
-    db = pymysql.connect(host="localhost", user="root", passwd="m9r19db", database="Accounts")
-    cursor = db.cursor()
-except exception():
-    print("error occurred connecting to db")
-
-
 def mainMenu():
     print(10 * " " + 13 * "=")
     print(10 * " " + 3 * " " + "WELCOME")
@@ -39,10 +32,10 @@ def createAccount(accounts):
         accountNumber = genAccountNo()
         #accounts[accountNumber] = {'Firstname':fname,'Lastname':lname, 'email':email, 'password':password, 'passwordHint':passwordHint}
         print(f"\n\nYour Account number is {accountNumber}")
-
-        for i,j in accounts[accountNumber].items():
-            print(i, j)
+        global customer
+        customer = Accounts(fname, lname, email, accountNumber, password, passwordHint)
         print("\nAccount created successfully!!")
+        return 2
 
 
 class Accounts:
@@ -65,6 +58,22 @@ class Accounts:
             return True
         else:
             return False
+
+    def DB(self):
+        global db, cursor
+        try:
+            db = pymysql.connect(host="localhost", user="root", passwd="m9r19db", database="Accounts")
+            cursor = db.cursor()
+        except exception():
+            print("error occurred connecting to db")
+        finally:
+            cursor.execute(
+                "CREATE TABLE IF NOT EXISTS Accounts (accountnumber INT(12) PRIMARY KEY, firstname VARCHAR(40),lastname VARCHAR(40),password VARCHAR(40), passwordHint VARCHAR(100), email VARCHAR(30), balance VARCHAR(16))")
+            db.commit()
+
+    def insert(self):
+        cursor.execute("INSERT INTO customer (accountNumber, firstName,lastName,password,passwordHint,email, balance) VALUES (%s,%s,%s,%s,%s,%s,%s)",(1234567,'name', 'name', 'password', 'password', 'email@email.com', 123456))
+        db.commit()
 
     def displayAll(self):
         cursor.execute("select * from customer")
@@ -94,15 +103,12 @@ def loginMenu():
     pass
 
 def next(choice):
-    pass
 
-class DB:
-    def __init__(self):
-        cursor.execute("CREATE TABLE IF NOT EXISTS Accounts (accountnumber INT(12) PRIMARY KEY, firstname VARCHAR(40),lastname VARCHAR(40),password VARCHAR(40), passwordHint VARCHAR(100), email VARCHAR(30), balance VARCHAR(16))")
-        db.commit()
-
-    def insert(self):
-        cursor.execute("INSERT INTO customer (accountNumber, firstName,lastName,password,passwordHint, balance) VALUES (%s,%s,%s,%s,%s,%s)",(1234567,'name', 'name', 'password', 'password', 123456))
-        db.commit()
+    if choice == 1:
+        createAccount()
+    elif choice == 2:
+        accountLogin()
+    elif choice == 3:
+    pass #exit application
 
 
