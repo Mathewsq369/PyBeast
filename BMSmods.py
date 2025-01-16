@@ -39,10 +39,13 @@ def createAccount(accounts):
 
 
 class accounts:
-    def __init__(self,username, email, accountNo, accountName, password):
+    def __init__(self,fname, lname, email, accountNo, password, passwordHint):
+        self.fname = fname
+        self.lname = lname
+        self.email = email
         self.accountNo = accountNo
-        self.accountName = accountName
         self.password = password
+        self.passwordHint = passwordHint
 
     def createAccount(self):
         pass
