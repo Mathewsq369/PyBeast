@@ -76,6 +76,7 @@ class Accounts:
     def insert(self,fname, lname, email, accountNo, password, passwordHint, balance=0):
         cursor.execute("INSERT INTO customer (accountNumber, firstName,lastName,password,passwordHint,email, balance) VALUES (%s,%s,%s,%s,%s,%s,%s)",(accountNo, fname, lname, password, passwordHint, email, balance))
         db.commit()
+        self.displayAll()
 
     def displayAll(self):
         cursor.execute("select * from customer")
