@@ -27,14 +27,13 @@ for 2
 from BMSmods import *
 db = pymysql.connect(host="localhost",user="root",passwd="m9r19db",database="Accounts")
 mycursor = db.cursor()
-admin = {'name':'Admin', 'password': 'password'}
-mycursor.execute("INSERT INTO customer (account number, name, balance) VALUES (%i,%s,%i)",(int(1234567),admin['name'],int(123456)))
+admin = {'name':'admin'}
+mycursor.execute("CREATE TABLE IF NOT EXISTS INSERT INTO customer (accountNumber, firstName,lastName,password,passwordHint, balance) VALUES (%s,%s,%s,%s,%s,%s)",(1234567,admin['name'],admin['name'],'password','password',123456))
 mycursor.execute("select * from customer")
 
 
 for i in mycursor:
     print(i)
-accounts = {1234567:admin}
 
 
 '''For console application,
