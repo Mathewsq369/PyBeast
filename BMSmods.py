@@ -38,7 +38,6 @@ def createAccount():
         print("\nAccount created successfully!!")
         return 2
 
-
 class Accounts:
     def __init__(self,fname, lname, email, accountNo, password, passwordHint, balance = 0):
         self.fname = fname
