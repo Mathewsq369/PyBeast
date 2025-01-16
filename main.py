@@ -30,6 +30,7 @@ mycursor = db.cursor()
 admin = {'name':'admin'}
 mycursor.execute("INSERT INTO customer (accountNumber, firstName,lastName,password,passwordHint, balance) VALUES (%s,%s,%s,%s,%s,%s)",(1234567,admin['name'],admin['name'],'password','password',123456))
 mycursor.execute("select * from customer")
+db.commit()
 
 
 for i in mycursor:
