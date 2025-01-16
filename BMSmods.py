@@ -93,9 +93,9 @@ def authentication(count=0):
     if accounts[accountNumber]['password'] == password:
         loginMenu()
     elif count == 3:
-        global choice
-        choice = mainMenu()
-        next(choice)
+        global page
+        page = mainMenu()
+        next(page)
     else:
         authentication(count + 1)
 
