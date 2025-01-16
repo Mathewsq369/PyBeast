@@ -30,7 +30,7 @@ def createAccount(accounts):
     if password == confPass:
         passwordHint = input("Create a password hint incase you ever forget your password: ")
         accountNumber = genAccountNo()
-        accounts[accountNumber] = {'Firstname':fname,'Lastname':lname, 'email':email, 'password':password, 'passwordHint':passwordHint}
+        #accounts[accountNumber] = {'Firstname':fname,'Lastname':lname, 'email':email, 'password':password, 'passwordHint':passwordHint}
         print(f"\n\nYour Account number is {accountNumber}")
 
         for i,j in accounts[accountNumber].items():
@@ -38,17 +38,18 @@ def createAccount(accounts):
         print("\nAccount created successfully!!")
 
 
-class accounts:
-    def __init__(self,fname, lname, email, accountNo, password, passwordHint):
+class Accounts:
+    def __init__(self,fname, lname, email, accountNo, password, passwordHint, balance = 0):
         self.fname = fname
         self.lname = lname
         self.email = email
         self.accountNo = accountNo
         self.password = password
         self.passwordHint = passwordHint
+        self.balance = balance
 
-    def createAccount(self):
-        pass
+    def __str__(self):
+        return f"accountNo:{self.accountNo}, fname:{self.fname}, lname:{self.lname}, email:{self.email}"
 
     def comp(self, other):
         b1 = self.balance
