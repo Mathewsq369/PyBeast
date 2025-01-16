@@ -17,7 +17,7 @@ def genAccountNo():
     a = random.randint(12344321, 87654321)
     return a
 
-def createAccount(accounts):
+def createAccount():
     print("\n\n" + 10 * " " + 16 * "=")
     print(10 * " " + "ACCOUNT CREATION")
     print(10 * " " + 16 * "=")
@@ -49,6 +49,23 @@ class Accounts:
         self.passwordHint = passwordHint
         self.balance = balance
 
+        global db, cursor
+        try:
+            db = pymysql.connect(host="localhost", user="root", passwd="m9r19db", database="Accounts")
+            cursor = db.cursor()
+        except pymysql.err.InternalError:
+            print("error occurred connecting to db")
+        except pymysql.err.DatabaseError:
+            print("error occurred connecting to db")
+        finally:
+            cursor.execute(
+                "CREATE TABLE IF NOT EXISTS Accounts (accountnumber INT(12) PRIMARY KEY, firstname VARCHAR(40),lastname VARCHAR(40),password VARCHAR(40), passwordHint VARCHAR(100), email VARCHAR(30), balance VARCHAR(16))")
+            #db.commit()
+            cursor.execute(
+                "INSERT INTO Accounts (accountNumber, firstName,lastName,password,passwordHint,email, balance) VALUES (%s,%s,%s,%s,%s,%s,%s)",
+                (accountNo, fname, lname, password, passwordHint, email, balance))
+            db.commit()
+
     def __str__(self):
         return f"accountNo:{self.accountNo}, fname:{self.fname}, lname:{self.lname}, email:{self.email}"
 
@@ -60,26 +77,11 @@ class Accounts:
         else:
             return False
 
-    def DB(self):
-        global db, cursor
-        try:
-            db = pymysql.connect(host="localhost", user="root", passwd="m9r19db", database="Accounts")
-            cursor = db.cursor()
-        except exception():
-            print("error occurred connecting to db")
-        finally:
-            cursor.execute(
-                "CREATE TABLE IF NOT EXISTS Accounts (accountnumber INT(12) PRIMARY KEY, firstname VARCHAR(40),lastname VARCHAR(40),password VARCHAR(40), passwordHint VARCHAR(100), email VARCHAR(30), balance VARCHAR(16))")
-            db.commit()
-
-
     def insert(self,fname, lname, email, accountNo, password, passwordHint, balance=0):
-        cursor.execute("INSERT INTO customer (accountNumber, firstName,lastName,password,passwordHint,email, balance) VALUES (%s,%s,%s,%s,%s,%s,%s)",(accountNo, fname, lname, password, passwordHint, email, balance))
-        db.commit()
         self.displayAll()
 
     def displayAll(self):
-        cursor.execute("select * from customer")
+        cursor.execute("select * from Accounts")
         for i in cursor:
             print(i)
 
@@ -112,7 +114,7 @@ def next(choice):
     elif choice == 2:
         accountLogin()
     elif choice == 3:
-    pass #exit application
+        pass #exit application
 
 
 
