@@ -1,8 +1,6 @@
 import random
 import pymysql
 
-#from sqlite3 import connect
-
 
 def mainMenu():
     print(10 * " " + 13 * "=")
@@ -70,7 +68,7 @@ class accounts(self,accountNo,accountName,password):
         self.accountName = accountName
         self.password = password
 
-    def createaccount(self):
+    def createAccount(self):
         pass
         
     def comp(self,other):
@@ -86,6 +84,6 @@ class accounts(self,accountNo,accountName,password):
 acc1 = accounts()
 acc2 = accounts()
 
-acc1.createaccount()
-acc1.createaccount()        
+acc1.createAccount()
+acc1.createAccount()        
 '''

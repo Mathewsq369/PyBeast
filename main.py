@@ -28,7 +28,7 @@ from BMSmods import *
 db = pymysql.connect(host="localhost",user="root",passwd="m9r19db",database="Accounts")
 mycursor = db.cursor()
 admin = {'name':'admin'}
-mycursor.execute("CREATE TABLE IF NOT EXISTS INSERT INTO customer (accountNumber, firstName,lastName,password,passwordHint, balance) VALUES (%s,%s,%s,%s,%s,%s)",(1234567,admin['name'],admin['name'],'password','password',123456))
+mycursor.execute("INSERT INTO customer (accountNumber, firstName,lastName,password,passwordHint, balance) VALUES (%s,%s,%s,%s,%s,%s)",(1234567,admin['name'],admin['name'],'password','password',123456))
 mycursor.execute("select * from customer")
 
 
