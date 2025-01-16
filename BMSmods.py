@@ -1,5 +1,12 @@
 import random
 import pymysql
+from logging import exception
+
+try:
+    db = pymysql.connect(host="localhost", user="root", passwd="m9r19db", database="Accounts")
+    cursor = db.cursor()
+except exception():
+    print("error occurred connecting to db")
 
 
 def mainMenu():
@@ -59,6 +66,11 @@ class Accounts:
         else:
             return False
 
+    def displayAll(self):
+        cursor.execute("select * from customer")
+        for i in cursor:
+            print(i)
+
 def accountLogin():
     global accounts
     print("\n\n" + 10 * " " + 13 * "=")
@@ -83,3 +95,14 @@ def loginMenu():
 
 def next(choice):
     pass
+
+class DB:
+    def __init__(self):
+        cursor.execute("CREATE TABLE IF NOT EXISTS Accounts (accountnumber INT(12) PRIMARY KEY, firstname VARCHAR(40),lastname VARCHAR(40),password VARCHAR(40), passwordHint VARCHAR(100), email VARCHAR(30), balance VARCHAR(16))")
+        db.commit()
+
+    def insert(self):
+        cursor.execute("INSERT INTO customer (accountNumber, firstName,lastName,password,passwordHint, balance) VALUES (%s,%s,%s,%s,%s,%s)",(1234567,'name', 'name', 'password', 'password', 123456))
+        db.commit()
+
+
