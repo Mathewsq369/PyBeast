@@ -1,17 +1,4 @@
-"""
-recoding the bank account management system
-"""
-
-"""
-After starting the system
-1. User wants to login
-2. User wants to create account
-3.Exit 
-"""
-
-'''
-could implement accounts as classes
-'''
+from BMSmods import *
 """
 for 1
     ask for accountnumber and password
@@ -24,7 +11,6 @@ for 2
     account number generated and displayed to the user
     user is redirected to the login page
 """
-from BMSmods import *
 db = pymysql.connect(host="localhost",user="root",passwd="m9r19db",database="Accounts")
 mycursor = db.cursor()
 admin = {'name':'admin'}

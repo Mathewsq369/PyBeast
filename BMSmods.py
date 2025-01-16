@@ -21,7 +21,8 @@ def createAccount(accounts):
     print("\n\n" + 10 * " " + 16 * "=")
     print(10 * " " + "ACCOUNT CREATION")
     print(10 * " " + 16 * "=")
-    username = input("Enter a username: ")
+    fname = input("Enter your first name: ")
+    lname = input("Enter your last name: ")
     email = input("Enter your email address: ")
     password = input("Create a strong password: ")
     confPass = input("Confirm your password: ")
@@ -29,12 +30,30 @@ def createAccount(accounts):
     if password == confPass:
         passwordHint = input("Create a password hint incase you ever forget your password: ")
         accountNumber = genAccountNo()
-        accounts[accountNumber] = {'username':username, 'email':email, 'password':password, 'passwordHint':passwordHint}
+        accounts[accountNumber] = {'Firstname':fname,'Lastname':lname, 'email':email, 'password':password, 'passwordHint':passwordHint}
         print(f"\n\nYour Account number is {accountNumber}")
 
         for i,j in accounts[accountNumber].items():
             print(i, j)
         print("\nAccount created successfully!!")
+
+
+class accounts:
+    def __init__(self,username, email, accountNo, accountName, password):
+        self.accountNo = accountNo
+        self.accountName = accountName
+        self.password = password
+
+    def createAccount(self):
+        pass
+
+    def comp(self, other):
+        b1 = self.balance
+        b2 = other.balance
+        if b1 > b2:
+            return True
+        else:
+            return False
 
 def accountLogin():
     global accounts
@@ -60,30 +79,3 @@ def loginMenu():
 
 def next(choice):
     pass
-
-'''
-class accounts(self,accountNo,accountName,password):
-    def __init__(self,accountNo, accountName, password):
-        self.accountNo = accountNO
-        self.accountName = accountName
-        self.password = password
-
-    def createAccount(self):
-        pass
-        
-    def comp(self,other):
-        b1 = self.balance
-        b2 = other.balance
-        if b1 > b2:
-            return True
-        else:
-            return False
-        
-        
-        
-acc1 = accounts()
-acc2 = accounts()
-
-acc1.createAccount()
-acc1.createAccount()        
-'''
