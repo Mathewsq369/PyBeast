@@ -1,6 +1,5 @@
 import random
 import pymysql
-from logging import exception
 
 
 def mainMenu():
@@ -14,9 +13,11 @@ def mainMenu():
     choice = int(input("Input choice >> "))
     return choice
 
+
 def genAccountNo():
     a = random.randint(12344321, 87654321)
     return a
+
 
 def createAccount():
     print("\n\n" + 10 * " " + 16 * "=")
@@ -37,6 +38,7 @@ def createAccount():
         print("\nAccount created successfully!!\n")
         print(customer)
         return 2
+
 
 class Accounts:
     def __init__(self,fname, lname, email, password, passwordHint,accountNumber):
@@ -89,34 +91,48 @@ class Accounts:
         else:
             return accountNo
 
+    @staticmethod
+    def verify(accountNo, passwd):
+        Accounts.startDB()
+        cursor.execute("SELECT 1 from Accounts WHERE accountnumber = %s and password = %s LIMIT 1", (accountNo,passwd))
+        result = cursor.fetchone()
+        if result:
+            return True
+        else:
+            return False
+
     def update(self):
         cursor.execute(
             "INSERT INTO Accounts (accountNumber, firstName,lastName,password,passwordHint,email, balance) VALUES (%s,%s,%s,%s,%s,%s,%s)",
             (self.accountNo, self.fname, self.lname, self.password, self.passwordHint, self.email, self.balance))
         db.commit()
 
+
 def accountLogin():
-    global accounts
     print("\n\n" + 10 * " " + 13 * "=")
     print(10 * " " + "ACCOUNT LOGIN")
     print(10 * " " + 13 * "=")
     authentication()
-    loginMenu()
 
-def authentication(count=0):
+
+def authentication(count=1):
     accountNumber = int(input("\nEnter your account number: "))
     password = input("Enter your password: ")
-    if accounts[accountNumber]['password'] == password:
+    if Accounts.verify(accountNumber, password):
         loginMenu()
     elif count == 3:
+        print(f"Incorrect account number or password. {3 - count} attempts remaining. Redirecting to home page...\n")
         global page
         page = mainMenu()
         next(page)
     else:
+        print(f"Incorrect account number or password. {3 - count} attempts remaining")
         authentication(count + 1)
+
 
 def loginMenu():
     pass
+
 
 def next(choice):
 
@@ -125,4 +141,6 @@ def next(choice):
     elif choice == 2:
         accountLogin()
     elif choice == 3:
+        loginMenu()
+    elif choice == 4:
         pass #exit application
