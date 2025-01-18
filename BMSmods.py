@@ -2,6 +2,7 @@ import random
 import pymysql
 from logging import exception
 
+
 def mainMenu():
     print(10 * " " + 13 * "=")
     print(10 * " " + 3 * " " + "WELCOME")
@@ -29,24 +30,26 @@ def createAccount():
 
     if password == confPass:
         passwordHint = input("Create a password hint incase you ever forget your password: ")
-        accountNumber = genAccountNo()
+        global customer
+        customer = Accounts(fname, lname, email,password, passwordHint)
+        accountNumber = Accounts.checkAccountNo(accountNO=0)
+        customer.accountNo = accountNumber
+        customer.update()
         #accounts[accountNumber] = {'Firstname':fname,'Lastname':lname, 'email':email, 'password':password, 'passwordHint':passwordHint}
         print(f"\n\nYour Account number is {accountNumber}")
-        global customer
-        customer = Accounts(fname, lname, email, accountNumber, password, passwordHint)
-        customer.insert(fname, lname, email, accountNumber, password, passwordHint)
+        customer.__str__()
         print("\nAccount created successfully!!")
         return 2
 
 class Accounts:
-    def __init__(self,fname, lname, email, accountNo, password, passwordHint, balance = 0):
+    def __init__(self,fname, lname, email, password, passwordHint):
         self.fname = fname
         self.lname = lname
         self.email = email
-        self.accountNo = accountNo
+        self.accountNo = 0
         self.password = password
         self.passwordHint = passwordHint
-        self.balance = balance
+        self.balance = 0
 
         global db, cursor
         try:
@@ -60,10 +63,7 @@ class Accounts:
             cursor.execute(
                 "CREATE TABLE IF NOT EXISTS Accounts (accountnumber INT(12) PRIMARY KEY, firstname VARCHAR(40),lastname VARCHAR(40),password VARCHAR(40), passwordHint VARCHAR(100), email VARCHAR(30), balance VARCHAR(16))")
             #db.commit()
-            cursor.execute(
-                "INSERT INTO Accounts (accountNumber, firstName,lastName,password,passwordHint,email, balance) VALUES (%s,%s,%s,%s,%s,%s,%s)",
-                (accountNo, fname, lname, password, passwordHint, email, balance))
-            db.commit()
+            self.update()
 
     def __str__(self):
         return f"accountNo:{self.accountNo}, fname:{self.fname}, lname:{self.lname}, email:{self.email}"
@@ -76,13 +76,27 @@ class Accounts:
         else:
             return False
 
-    def insert(self,fname, lname, email, accountNo, password, passwordHint, balance=0):
-        self.displayAll()
-
-    def displayAll(self):
+    @staticmethod
+    def displayAll():
         cursor.execute("select * from Accounts")
         for i in cursor:
             print(i)
+
+    @staticmethod
+    def checkAccountNo(accountNO):
+        accountNo = genAccountNo()
+        cursor.execute("SELECT 1 from Accounts WHERE accountnumber = %s LIMIT 1",(accountNo))
+        result = cursor.fetchone()
+        if result:
+            Accounts.checkAccountNo(accountNo)
+        else:
+            return accountNo
+
+    def update(self):
+        cursor.execute(
+            "INSERT INTO Accounts (accountNumber, firstName,lastName,password,passwordHint,email, balance) VALUES (%s,%s,%s,%s,%s,%s,%s)",
+            (self.accountNo, self.fname, self.lname, self.password, self.passwordHint, self.email, self.balance))
+        db.commit()
 
 def accountLogin():
     global accounts
@@ -90,6 +104,7 @@ def accountLogin():
     print(10 * " " + "ACCOUNT LOGIN")
     print(10 * " " + 13 * "=")
     authentication()
+    loginMenu()
 
 def authentication(count=0):
     accountNumber = int(input("\nEnter your account number: "))
