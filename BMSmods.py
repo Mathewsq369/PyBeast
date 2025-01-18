@@ -30,13 +30,12 @@ def createAccount():
 
     if password == confPass:
         passwordHint = input("Create a password hint incase you ever forget your password: ")
+        Accounts.startDB()
         accountNumber = Accounts.checkAccountNo(genAccountNo())
         global customer
         customer = Accounts(fname, lname, email,password, passwordHint,accountNumber)
-        #accounts[accountNumber] = {'Firstname':fname,'Lastname':lname, 'email':email, 'password':password, 'passwordHint':passwordHint}
-        #print(f"\n\nYour Account number is {accountNumber}")
+        print("\nAccount created successfully!!\n")
         print(customer)
-        print("\nAccount created successfully!!")
         return 2
 
 class Accounts:
@@ -48,20 +47,7 @@ class Accounts:
         self.password = password
         self.passwordHint = passwordHint
         self.balance = 0
-
-        global db, cursor
-        try:
-            db = pymysql.connect(host="localhost", user="root", passwd="m9r19db", database="Accounts")
-            cursor = db.cursor()
-        except pymysql.err.InternalError:
-            print("error occurred connecting to db")
-        except pymysql.err.DatabaseError:
-            print("error occurred connecting to db")
-        finally:
-            cursor.execute(
-                "CREATE TABLE IF NOT EXISTS Accounts (accountnumber INT(12) PRIMARY KEY, firstname VARCHAR(40),lastname VARCHAR(40),password VARCHAR(40), passwordHint VARCHAR(100), email VARCHAR(30), balance VARCHAR(16))")
-            #db.commit()
-            self.update()
+        self.update()
 
     def __str__(self):
         return f"accountNo:{self.accountNo}, fname:{self.fname}, lname:{self.lname}, email:{self.email}"
@@ -81,12 +67,25 @@ class Accounts:
             print(i)
 
     @staticmethod
-    def checkAccountNo(accountNO):
-        accountNo = genAccountNo()
+    def startDB():
+        global db, cursor
+        try:
+            db = pymysql.connect(host="localhost", user="root", passwd="m9r19db", database="Accounts")
+            cursor = db.cursor()
+        except pymysql.err.InternalError:
+            print("error occurred connecting to db")
+        except pymysql.err.DatabaseError:
+            print("error occurred connecting to db")
+        finally:
+            cursor.execute(
+                "CREATE TABLE IF NOT EXISTS Accounts (accountnumber INT(12) PRIMARY KEY, firstname VARCHAR(40),lastname VARCHAR(40),password VARCHAR(40), passwordHint VARCHAR(100), email VARCHAR(30), balance VARCHAR(16))")
+
+    @staticmethod
+    def checkAccountNo(accountNo):
         cursor.execute("SELECT 1 from Accounts WHERE accountnumber = %s LIMIT 1",(accountNo))
         result = cursor.fetchone()
         if result:
-            Accounts.checkAccountNo(accountNo)
+            Accounts.checkAccountNo(accountNo = genAccountNo())
         else:
             return accountNo
 
