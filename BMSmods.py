@@ -120,7 +120,7 @@ def authentication(count=1):
     accountNumber = int(input("\nEnter your account number: "))
     password = input("Enter your password: ")
     if Accounts.verify(accountNumber, password):
-        loginMenu()
+        loginMenu(accountNumber)
     elif count == 3:
         print(f"Incorrect account number or password. {3 - count} attempts remaining. Redirecting to home page...\n")
         global page
@@ -131,9 +131,10 @@ def authentication(count=1):
         authentication(count + 1)
 
 
-def loginMenu():
-    pass
-
+def loginMenu(accountNo):
+    print("\n\n" + 10 * " " + 21 * "=")
+    print(10 * " " + f"SIGNED IN AS {accountNo}")
+    print(10 * " " + 21 * "=")
 
 def next(choice):
 
@@ -142,6 +143,4 @@ def next(choice):
     elif choice == 2:
         accountLogin()
     elif choice == 3:
-        loginMenu()
-    elif choice == 4:
         pass #exit application
