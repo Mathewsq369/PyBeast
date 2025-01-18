@@ -30,23 +30,21 @@ def createAccount():
 
     if password == confPass:
         passwordHint = input("Create a password hint incase you ever forget your password: ")
+        accountNumber = Accounts.checkAccountNo(genAccountNo())
         global customer
-        customer = Accounts(fname, lname, email,password, passwordHint)
-        accountNumber = Accounts.checkAccountNo(accountNO=0)
-        customer.accountNo = accountNumber
-        customer.update()
+        customer = Accounts(fname, lname, email,password, passwordHint,accountNumber)
         #accounts[accountNumber] = {'Firstname':fname,'Lastname':lname, 'email':email, 'password':password, 'passwordHint':passwordHint}
-        print(f"\n\nYour Account number is {accountNumber}")
-        customer.__str__()
+        #print(f"\n\nYour Account number is {accountNumber}")
+        print(customer)
         print("\nAccount created successfully!!")
         return 2
 
 class Accounts:
-    def __init__(self,fname, lname, email, password, passwordHint):
+    def __init__(self,fname, lname, email, password, passwordHint,accountNumber):
         self.fname = fname
         self.lname = lname
         self.email = email
-        self.accountNo = 0
+        self.accountNo = accountNumber
         self.password = password
         self.passwordHint = passwordHint
         self.balance = 0
@@ -129,17 +127,3 @@ def next(choice):
         accountLogin()
     elif choice == 3:
         pass #exit application
-
-
-
-
-
-
-
-
-
-
-
-
-
-#Random data (1234567,'name', 'name', 'password', 'password', 'email@email.com', 123456)
