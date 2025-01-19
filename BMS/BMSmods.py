@@ -136,6 +136,12 @@ def loginMenu(accountNo):
     print(10 * " " + f"SIGNED IN AS {accountNo}")
     print(10 * " " + 21 * "=")
 
+    print("\nChoose a service")
+    print("1. Money Transactions")
+    print("2. Account Details")
+    print("3. Other Services")
+    print("4. Exit")
+
 def next(choice):
 
     if choice == 1:
