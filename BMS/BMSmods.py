@@ -1,4 +1,6 @@
 import random
+from secrets import choice
+
 import pymysql
 
 
@@ -141,6 +143,19 @@ def loginMenu(accountNo):
     print("2. Account Details")
     print("3. Other Services")
     print("4. Exit")
+    choice = int(input("Enter your choice >> _"))
+
+    if choice == 1:
+        pass
+    elif choice == 2:
+        pass
+    elif choice == 3:
+        pass
+    elif choice == 4:
+        pass
+    else:
+        print("invalid choice made! Reloading Menu")
+        loginMenu(accountNo)
 
 def next(choice):
 
