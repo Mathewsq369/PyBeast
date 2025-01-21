@@ -165,3 +165,6 @@ def next(choice):
         accountLogin()
     elif choice == 3:
         pass #exit application
+
+def moneyTrans():
+    pass
