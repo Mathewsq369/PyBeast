@@ -1,5 +1,4 @@
 import random
-from secrets import choice
 
 import pymysql
 
