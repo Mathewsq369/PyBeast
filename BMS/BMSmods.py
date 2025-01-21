@@ -171,3 +171,6 @@ def moneyTrans():
 
 def accountDet():
     pass
+
+def Other():
+    pass
