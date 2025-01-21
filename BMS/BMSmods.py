@@ -168,3 +168,6 @@ def next(choice):
 
 def moneyTrans():
     pass
+
+def accountDet():
+    pass
