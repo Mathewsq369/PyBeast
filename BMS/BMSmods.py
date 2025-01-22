@@ -166,7 +166,7 @@ def next(choice):
         pass #exit application
 
 def moneyTrans():
-    pass #function in accounts class
+    pass
 
 def accountDet():
     pass #function in accounts class?
