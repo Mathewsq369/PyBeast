@@ -169,7 +169,7 @@ def moneyTrans():
     pass
 
 def accountDet():
-    pass #function in accounts class?
+    pass
 
 def Other():
     pass
